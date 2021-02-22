@@ -35,6 +35,24 @@ namespace RIK.MeshCombine{
 
         }
 
+        public int GetPolygonCount(){
+            
+            int polygonCount = 0;
+
+            MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
+            int detectedCount = meshFilters.Length;
+
+            for(int i = 1; i < detectedCount; i++){
+
+                polygonCount += meshFilters[i].sharedMesh.triangles.Length;
+
+
+            }
+
+            return polygonCount;
+
+        }
+
     }
 
 }
