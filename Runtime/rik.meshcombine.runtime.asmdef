@@ -1,11 +1,7 @@
 {
-    "name": "rik.meshcombine.editor",
-    "references": [
-        "GUID:491c154d4fe5e454399dee330ee89f26"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "name": "RIK.MeshCombine",
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
