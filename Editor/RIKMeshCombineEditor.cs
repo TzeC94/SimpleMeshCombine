@@ -4,42 +4,46 @@ using UnityEngine;
 using UnityEditor;
 using RIK.MeshCombine;
 
-[CustomEditor(typeof(RIKMeshCombineScript))]
-public class RIKMeshCombineEditor : Editor{
+namespace RIK.MeshCombine {
 
-    int totalPolygon = 0;
-    const int maxPolygon = 65536;
+    [CustomEditor(typeof(RIKMeshCombineScript))]
+    public class RIKMeshCombineEditor : Editor {
 
-    public override void OnInspectorGUI(){
+        int totalPolygon = 0;
+        const int maxPolygon = 65536;
 
-        var meshCombineTarget = (RIKMeshCombineScript)target;
-        
-        if(GUILayout.Button("Combine")){
+        public override void OnInspectorGUI() {
 
-            totalPolygon = meshCombineTarget.GetPolygonCount();
+            var meshCombineTarget = (RIKMeshCombineScript)target;
 
-            if(totalPolygon <= maxPolygon){
+            if (GUILayout.Button("Combine")) {
 
-                meshCombineTarget.Run();
+                totalPolygon = meshCombineTarget.GetPolygonCount();
 
-            } else{
-                
-                EditorUtility.DisplayDialog("Couldn't Perform combine",
-                    string.Format("Current polygon detected {0} is more than max support polygon {1}", totalPolygon, maxPolygon),
-                    "Okayyyy");
+                if (totalPolygon <= maxPolygon) {
+
+                    meshCombineTarget.Run();
+
+                } else {
+
+                    EditorUtility.DisplayDialog("Couldn't Perform combine",
+                        string.Format("Current polygon detected {0} is more than max support polygon {1}", totalPolygon, maxPolygon),
+                        "Okayyyy");
+
+                }
 
             }
 
+            if (GUILayout.Button("Update Detected Polygon")) {
+
+                totalPolygon = meshCombineTarget.GetPolygonCount();
+
+            }
+
+            EditorGUILayout.HelpBox(string.Format("Current polygon detected {0} / {1}", totalPolygon, maxPolygon), MessageType.Info);
+
         }
-
-        if(GUILayout.Button("Update Detected Polygon")){
-
-            totalPolygon = meshCombineTarget.GetPolygonCount();
-
-        }
-
-        EditorGUILayout.HelpBox(string.Format("Current polygon detected {0} / {1}", totalPolygon, maxPolygon), MessageType.Info);
 
     }
-   
+
 }
