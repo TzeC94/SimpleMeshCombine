@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 
 namespace RIK.MeshCombine{
 
@@ -26,8 +27,14 @@ namespace RIK.MeshCombine{
                 i++;
             }
 
-            transform.GetComponent<MeshFilter>().mesh = new Mesh();
-            transform.GetComponent<MeshFilter>().sharedMesh.CombineMeshes(combine, true, true, true);
+            Mesh mesh = new Mesh();
+            mesh.CombineMeshes(combine, true, true);
+            Unwrapping.GenerateSecondaryUVSet(mesh);
+
+            var targetMeshFilter = transform.GetComponent<MeshFilter>();
+            targetMeshFilter.mesh = new Mesh();
+            targetMeshFilter.sharedMesh = mesh;
+            //transform.GetComponent<MeshFilter>().sharedMesh.CombineMeshes(combine, true, true, true);
             transform.GetComponent<Renderer>().sharedMaterials = meshFilters[1].gameObject.GetComponent<Renderer>().sharedMaterials;
             transform.gameObject.SetActive(true);
 
