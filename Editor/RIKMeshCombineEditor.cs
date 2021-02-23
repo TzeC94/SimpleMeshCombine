@@ -42,6 +42,12 @@ namespace RIK.MeshCombine {
 
             EditorGUILayout.HelpBox(string.Format("Current polygon detected {0} / {1}", totalPolygon, maxPolygon), MessageType.Info);
 
+            if(GUILayout.Button("Revert")){
+                
+                meshCombineTarget.RevertSetting();
+
+            }
+
         }
 
     }

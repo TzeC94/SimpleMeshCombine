@@ -60,6 +60,46 @@ namespace RIK.MeshCombine{
 
         }
 
+        public void RevertSetting(){
+
+            //Delete the combined mesh
+            GetComponent<MeshFilter>().mesh = null;
+
+            //Active all child
+            int childCount = transform.childCount;
+
+            for(int i = 0; i < childCount; i++){
+                
+                Transform currentTrans = transform.GetChild(i);
+                currentTrans.gameObject.SetActive(true);
+
+                //Check is this have child
+                ChildActiveRevert(currentTrans);
+
+            }
+
+        }
+
+        void ChildActiveRevert(Transform currentTrans) {
+            
+            int childCount = currentTrans.childCount;
+
+            if(childCount > 0){
+                
+                for(int i = 0; i < childCount; i++){
+
+                    Transform childTrans = currentTrans.GetChild(i);
+                    childTrans.gameObject.SetActive(true);
+
+                    ChildActiveRevert(childTrans);  //Recursive check
+
+
+                }
+
+            }
+
+        }
+
     }
 
 }
