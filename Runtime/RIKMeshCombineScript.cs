@@ -10,6 +10,8 @@ namespace RIK.MeshCombine{
         // Start is called before the first frame update
         public void Run(){
 
+            #if UNITY_EDITOR
+
             Vector3 oriPos = transform.position;
             transform.position = Vector3.zero;
 
@@ -39,6 +41,8 @@ namespace RIK.MeshCombine{
             transform.gameObject.SetActive(true);
 
             transform.position = oriPos;
+
+            #endif
 
         }
 
