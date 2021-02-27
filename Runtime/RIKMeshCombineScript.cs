@@ -24,7 +24,8 @@ namespace RIK.MeshCombine{
             {
                 combine[i].mesh = meshFilters[i].sharedMesh;
                 combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
-                meshFilters[i].gameObject.SetActive(false);
+                meshFilters[i].gameObject.GetComponent<MeshRenderer>().enabled = false;
+                //meshFilters[i].gameObject.SetActive(false);
 
                 i++;
             }
@@ -75,7 +76,8 @@ namespace RIK.MeshCombine{
             for(int i = 0; i < childCount; i++){
                 
                 Transform currentTrans = transform.GetChild(i);
-                currentTrans.gameObject.SetActive(true);
+                currentTrans.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                //currentTrans.gameObject.SetActive(true);
 
                 //Check is this have child
                 ChildActiveRevert(currentTrans);
