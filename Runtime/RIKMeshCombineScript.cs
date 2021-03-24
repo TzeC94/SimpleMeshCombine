@@ -77,7 +77,7 @@ namespace RIK.MeshCombine{
                 
                 Transform currentTrans = transform.GetChild(i);
                 currentTrans.gameObject.GetComponent<MeshRenderer>().enabled = true;
-                //currentTrans.gameObject.SetActive(true);
+                currentTrans.gameObject.SetActive(true);
 
                 //Check is this have child
                 ChildActiveRevert(currentTrans);
@@ -95,6 +95,7 @@ namespace RIK.MeshCombine{
                 for(int i = 0; i < childCount; i++){
 
                     Transform childTrans = currentTrans.GetChild(i);
+                    currentTrans.gameObject.GetComponent<MeshRenderer>().enabled = true;
                     childTrans.gameObject.SetActive(true);
 
                     ChildActiveRevert(childTrans);  //Recursive check
